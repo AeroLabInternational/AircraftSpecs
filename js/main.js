@@ -12,18 +12,63 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Language Switcher
+// Language Switcher with Translation
 const langSwitcher = document.getElementById('langSwitcher');
 if (langSwitcher) {
     let currentLang = 'en';
+    
+    // English translations (for reference, though not strictly needed since we use original text)
+    // Japanese translations are loaded from japanese.js
+    const translations = {
+        en: {},  // English uses original text
+        ja: typeof japaneseTranslations !== 'undefined' ? japaneseTranslations : {}
+    };
+    
+    function translatePage(lang) {
+        const elementsToTranslate = document.querySelectorAll('[data-translate], h1, h2, h3, p, a.btn, .section-subtitle, .search-input');
+        
+        elementsToTranslate.forEach(element => {
+            // Skip if it's inside search results or has no text
+            if (element.closest('.search-results') || element.closest('.search-result-item')) {
+                return;
+            }
+            
+            const originalText = element.getAttribute('data-original') || element.textContent.trim();
+            
+            // Store original text if not already stored
+            if (!element.getAttribute('data-original')) {
+                element.setAttribute('data-original', originalText);
+            }
+            
+            // Translate if translation exists
+            if (lang === 'ja' && translations.ja[originalText]) {
+                if (element.tagName === 'INPUT') {
+                    element.placeholder = translations.ja[originalText];
+                } else {
+                    element.textContent = translations.ja[originalText];
+                }
+            } else if (lang === 'en') {
+                // Restore original English text
+                if (element.tagName === 'INPUT') {
+                    element.placeholder = originalText;
+                } else {
+                    element.textContent = originalText;
+                }
+            }
+        });
+    }
+    
     langSwitcher.addEventListener('click', function() {
         if (currentLang === 'en') {
+            this.querySelector('.lang-icon').textContent = '🇯🇵';
             this.querySelector('.lang-text').textContent = '日本語';
             currentLang = 'ja';
-            // Here you would implement actual language switching logic
+            translatePage('ja');
         } else {
+            this.querySelector('.lang-icon').textContent = '🇺🇸';
             this.querySelector('.lang-text').textContent = 'English';
             currentLang = 'en';
+            translatePage('en');
         }
     });
 }

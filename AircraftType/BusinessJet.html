@@ -174,22 +174,31 @@
     </style>
 </head>
 <body>
-    <header class="aerolab-header">
-        <div class="container">
-            <img src="../images/Aerolab/AerolabLogo.png" alt="Aerolab Logo" class="aerolab-logo">
-        </div>
-    </header>
-    
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
-                <a href="../Home.html">✈️ Aircraft Specs</a>
+                <a href="../Home.html">
+                    <img src="../images/Aerolab/AerolabLogo.png" alt="Aerolab Logo" class="aerolab-logo">
+                </a>
             </div>
             <ul class="nav-menu">
                 <li><a href="../Home.html">Home</a></li>
                 <li><a href="../Home.html#aircraft-types">Aircraft Types</a></li>
                 <li><a href="BusinessJet.html" class="active">Business Jet</a></li>
             </ul>
+            <div class="nav-right">
+                <button class="language-switcher" id="langSwitcher">
+                    <span class="lang-icon">🇺🇸</span>
+                    <span class="lang-text">English</span>
+                </button>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search aircraft...">
+                    <button class="search-button" id="searchButton">
+                        <span>🔍</span>
+                    </button>
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -433,8 +442,7 @@
                     
                     <div class="aircraft-grid">
                         <a href="../Gulfstream/GulfstreamG550.html" class="aircraft-card available">
-                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                                ✈️
+                            <div class="aircraft-card-image" style="background: url('../images/Gulfstream/GulfstreamG550/GulfstreamG550Main.jpg') center/cover no-repeat;">
                             </div>
                             <div class="aircraft-card-content">
                                 <h3>Gulfstream G550</h3>
@@ -472,7 +480,7 @@
                                     </div>
                                     <div class="aircraft-card-spec">
                                         <span class="aircraft-card-spec-label">Max Speed</span>
-                                        <span class="aircraft-card-spec-value">Mach 0.90</span>
+                                        <span class="aircraft-card-spec-value">516 KTS</span>
                                     </div>
                                     <div class="aircraft-card-spec">
                                         <span class="aircraft-card-spec-label">Passengers</span>
@@ -510,7 +518,7 @@
                                     </div>
                                     <div class="aircraft-card-spec">
                                         <span class="aircraft-card-spec-label">Max Speed</span>
-                                        <span class="aircraft-card-spec-value">Mach 0.925</span>
+                                        <span class="aircraft-card-spec-value">530 KTS</span>
                                     </div>
                                     <div class="aircraft-card-spec">
                                         <span class="aircraft-card-spec-label">Passengers</span>
@@ -535,7 +543,7 @@
                                     </div>
                                     <div class="aircraft-card-spec">
                                         <span class="aircraft-card-spec-label">Max Speed</span>
-                                        <span class="aircraft-card-spec-value">Mach 0.925</span>
+                                        <span class="aircraft-card-spec-value">530 KTS</span>
                                     </div>
                                     <div class="aircraft-card-spec">
                                         <span class="aircraft-card-spec-label">Passengers</span>
@@ -560,7 +568,7 @@
                                     </div>
                                     <div class="aircraft-card-spec">
                                         <span class="aircraft-card-spec-label">Max Speed</span>
-                                        <span class="aircraft-card-spec-value">Mach 0.925</span>
+                                        <span class="aircraft-card-spec-value">530 KTS</span>
                                     </div>
                                     <div class="aircraft-card-spec">
                                         <span class="aircraft-card-spec-label">Passengers</span>
@@ -585,7 +593,7 @@
                                     </div>
                                     <div class="aircraft-card-spec">
                                         <span class="aircraft-card-spec-label">Max Speed</span>
-                                        <span class="aircraft-card-spec-value">Mach 0.925</span>
+                                        <span class="aircraft-card-spec-value">530 KTS</span>
                                     </div>
                                     <div class="aircraft-card-spec">
                                         <span class="aircraft-card-spec-label">Passengers</span>
@@ -607,6 +615,7 @@
         </div>
     </footer>
 
+    <script src="../js/japanese.js"></script>
     <script src="../js/main.js"></script>
     <script>
         function toggleCategory(categoryId) {
