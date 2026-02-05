@@ -25,15 +25,38 @@ if (langSwitcher) {
     };
     
     function translatePage(lang) {
-        const elementsToTranslate = document.querySelectorAll('[data-translate], h1, h2, h3, p, a.btn, .section-subtitle, .search-input');
+        // Target ALL text elements on the page
+        const elementsToTranslate = document.querySelectorAll(`
+            [data-translate], h1, h2, h3, h4, h5, h6, p, a.btn, 
+            .section-subtitle, .search-input,
+            .info-item-label, .info-item-value, 
+            .spec-label, .spec-value,
+            .cost-label, .cost-value,
+            .tab-btn, .section-title,
+            label, span:not(.search-results span):not(.search-result-item span),
+            .chart-title, td, th, li:not(.search-results li),
+            button:not(.tab-btn)
+        `);
         
         elementsToTranslate.forEach(element => {
-            // Skip if it's inside search results or has no text
-            if (element.closest('.search-results') || element.closest('.search-result-item')) {
+            // Skip if it's inside search results, airport suggestions, or has no text
+            if (element.closest('.search-results') || 
+                element.closest('.search-result-item') ||
+                element.closest('#airportSuggestions')) {
                 return;
             }
             
+            // Skip if element has only child elements (no direct text)
+            const hasOnlyChildren = element.children.length > 0 && 
+                                   Array.from(element.childNodes).every(node => 
+                                       node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()
+                                   );
+            if (hasOnlyChildren) return;
+            
             const originalText = element.getAttribute('data-original') || element.textContent.trim();
+            
+            // Skip empty text or very short text (likely icons/symbols)
+            if (!originalText || originalText.length < 2) return;
             
             // Store original text if not already stored
             if (!element.getAttribute('data-original')) {

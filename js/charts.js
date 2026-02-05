@@ -177,12 +177,19 @@ function initRangeMap(defaultLat, defaultLng, ferryRangeNM, passengerRangeNM, ai
         }
 
         // Create map centered on selected airport
-        rangeMap = L.map('rangeMap').setView([lat, lng], 3);
+        rangeMap = L.map('rangeMap', {
+            center: [lat, lng],
+            zoom: 3,
+            scrollWheelZoom: true,
+            preferCanvas: false
+        });
 
         // Add OpenStreetMap tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
-            maxZoom: 19
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap</a>',
+            maxZoom: 19,
+            minZoom: 2,
+            crossOrigin: true
         }).addTo(rangeMap);
 
         // Add marker for departure airport
@@ -196,41 +203,38 @@ function initRangeMap(defaultLat, defaultLng, ferryRangeNM, passengerRangeNM, ai
 
         // Add ferry range circle (blue)
         ferryCircle = L.circle([lat, lng], {
-            color: 'rgba(54, 162, 235, 0.8)',
-            fillColor: 'rgba(54, 162, 235, 0.2)',
-            fillOpacity: 0.3,
+            color: '#3690eb',
+            fillColor: '#3690eb',
+            fillOpacity: 0.15,
             radius: ferryRangeMeters,
             weight: 2
         }).addTo(rangeMap);
-        ferryCircle.bindPopup(`<b>Ferry Range</b><br>${ferryRangeNM.toLocaleString()} NM (${Math.round(ferryRangeNM * 1.852).toLocaleString()} km)`);
+        ferryCircle.bindPopup(`<b>Ferry Flight Range</b><br>${ferryRangeNM.toLocaleString()} NM (${Math.round(ferryRangeNM * 1.852).toLocaleString()} km)<br><small>0 passengers, pilots only</small>`);
 
         // Add passenger range circle (red)
         passengerCircle = L.circle([lat, lng], {
-            color: 'rgba(255, 99, 132, 0.8)',
-            fillColor: 'rgba(255, 99, 132, 0.2)',
-            fillOpacity: 0.3,
+            color: '#ff6384',
+            fillColor: '#ff6384',
+            fillOpacity: 0.15,
             radius: passengerRangeMeters,
             weight: 2
         }).addTo(rangeMap);
-        passengerCircle.bindPopup(`<b>Max Range</b><br>${passengerRangeNM.toLocaleString()} NM (${Math.round(passengerRangeNM * 1.852).toLocaleString()} km)`);
+        passengerCircle.bindPopup(`<b>Full Seat Range</b><br>${passengerRangeNM.toLocaleString()} NM (${Math.round(passengerRangeNM * 1.852).toLocaleString()} km)<br><small>With 8 passengers</small>`);
 
         // Fit map to show both circles
         rangeMap.fitBounds(ferryCircle.getBounds(), { padding: [50, 50] });
+        
+        // Force map to invalidate size after a short delay
+        setTimeout(function() {
+            rangeMap.invalidateSize();
+        }, 100);
     }
 
     // Initialize map with default location
     initializeMap(defaultLat, defaultLng);
 
-    // Airport search functionality
-    const airportSearch = document.getElementById('airportSearch');
-    if (airportSearch) {
-        airportSearch.addEventListener('change', function(e) {
-            const coords = e.target.value.split(',');
-            const lat = parseFloat(coords[0]);
-            const lng = parseFloat(coords[1]);
-            initializeMap(lat, lng);
-        });
-    }
+    // Return the initializeMap function so it can be called from the search
+    return initializeMap;
 }
 
 // Runway Length Horizontal Bar Chart
@@ -246,16 +250,16 @@ function initRunwayChart(balancedField, part91, part135, landing) {
                 label: 'Distance (feet)',
                 data: [balancedField, part91, part135, landing],
                 backgroundColor: [
+                    'rgba(0, 51, 153, 0.8)',
                     'rgba(0, 102, 204, 0.8)',
                     'rgba(54, 162, 235, 0.8)',
-                    'rgba(102, 153, 255, 0.8)',
-                    'rgba(153, 204, 255, 0.8)'
+                    'rgba(102, 178, 255, 0.8)'
                 ],
                 borderColor: [
+                    'rgba(0, 51, 153, 1)',
                     'rgba(0, 102, 204, 1)',
                     'rgba(54, 162, 235, 1)',
-                    'rgba(102, 153, 255, 1)',
-                    'rgba(153, 204, 255, 1)'
+                    'rgba(102, 178, 255, 1)'
                 ],
                 borderWidth: 2
             }]
@@ -269,8 +273,8 @@ function initRunwayChart(balancedField, part91, part135, landing) {
                     display: false
                 },
                 tooltip: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    padding: 12,
+                    backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                    padding: 15,
                     titleFont: {
                         size: 14,
                         weight: 'bold'
@@ -279,15 +283,13 @@ function initRunwayChart(balancedField, part91, part135, landing) {
                         size: 13
                     },
                     callbacks: {
+                        title: function() {
+                            return '';
+                        },
                         label: function(context) {
-                            const label = context.label || '';
                             const value = context.parsed.x || 0;
                             const meters = Math.round(value * 0.3048);
-                            return [
-                                label,
-                                'Distance: ' + value.toLocaleString() + ' ft',
-                                'Distance: ' + meters.toLocaleString() + ' m'
-                            ];
+                            return context.label + ': ' + value.toLocaleString() + ' ft (' + meters.toLocaleString() + ' m)';
                         }
                     }
                 }
@@ -297,7 +299,16 @@ function initRunwayChart(balancedField, part91, part135, landing) {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Distance (feet)'
+                        text: 'Distance (feet)',
+                        font: {
+                            size: 12,
+                            weight: 'bold'
+                        }
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return value.toLocaleString();
+                        }
                     },
                     grid: {
                         color: 'rgba(0, 0, 0, 0.1)'
@@ -306,6 +317,11 @@ function initRunwayChart(balancedField, part91, part135, landing) {
                 y: {
                     grid: {
                         display: false
+                    },
+                    ticks: {
+                        font: {
+                            size: 11
+                        }
                     }
                 }
             }
@@ -325,16 +341,16 @@ function initCostCharts(variableCosts, fixedCosts) {
                 datasets: [{
                     data: [variableCosts.fuel, variableCosts.airframe, variableCosts.engine, variableCosts.misc],
                     backgroundColor: [
-                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(0, 51, 153, 0.8)',
+                        'rgba(0, 102, 204, 0.8)',
                         'rgba(54, 162, 235, 0.8)',
-                        'rgba(255, 206, 86, 0.8)',
-                        'rgba(75, 192, 192, 0.8)'
+                        'rgba(102, 178, 255, 0.8)'
                     ],
                     borderColor: [
-                        'rgba(255, 99, 132, 1)',
+                        'rgba(0, 51, 153, 1)',
+                        'rgba(0, 102, 204, 1)',
                         'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)'
+                        'rgba(102, 178, 255, 1)'
                     ],
                     borderWidth: 2
                 }]
@@ -344,17 +360,11 @@ function initCostCharts(variableCosts, fixedCosts) {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 15,
-                            font: {
-                                size: 12
-                            }
-                        }
+                        display: false
                     },
                     tooltip: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        padding: 12,
+                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                        padding: 15,
                         titleFont: {
                             size: 14,
                             weight: 'bold'
@@ -368,11 +378,7 @@ function initCostCharts(variableCosts, fixedCosts) {
                                 const value = context.parsed || 0;
                                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                 const percentage = ((value / total) * 100).toFixed(1);
-                                return [
-                                    label,
-                                    'Cost: $' + value.toLocaleString(),
-                                    'Share: ' + percentage + '%'
-                                ];
+                                return label + ': $' + value.toLocaleString() + ' (' + percentage + '%)';;
                             }
                         }
                     }
@@ -391,18 +397,18 @@ function initCostCharts(variableCosts, fixedCosts) {
                 datasets: [{
                     data: [fixedCosts.crew, fixedCosts.training, fixedCosts.hangar, fixedCosts.insurance, fixedCosts.misc],
                     backgroundColor: [
-                        'rgba(153, 102, 255, 0.8)',
-                        'rgba(255, 159, 64, 0.8)',
-                        'rgba(201, 203, 207, 0.8)',
-                        'rgba(255, 99, 132, 0.8)',
-                        'rgba(54, 162, 235, 0.8)'
+                        'rgba(0, 51, 153, 0.8)',
+                        'rgba(0, 102, 204, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(102, 178, 255, 0.8)',
+                        'rgba(153, 204, 255, 0.8)'
                     ],
                     borderColor: [
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(201, 203, 207, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)'
+                        'rgba(0, 51, 153, 1)',
+                        'rgba(0, 102, 204, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(102, 178, 255, 1)',
+                        'rgba(153, 204, 255, 1)'
                     ],
                     borderWidth: 2
                 }]
@@ -412,17 +418,11 @@ function initCostCharts(variableCosts, fixedCosts) {
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: 'bottom',
-                        labels: {
-                            padding: 15,
-                            font: {
-                                size: 12
-                            }
-                        }
+                        display: false
                     },
                     tooltip: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                        padding: 12,
+                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                        padding: 15,
                         titleFont: {
                             size: 14,
                             weight: 'bold'
@@ -436,11 +436,7 @@ function initCostCharts(variableCosts, fixedCosts) {
                                 const value = context.parsed || 0;
                                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                 const percentage = ((value / total) * 100).toFixed(1);
-                                return [
-                                    label,
-                                    'Cost: $' + value.toLocaleString(),
-                                    'Share: ' + percentage + '%'
-                                ];
+                                return label + ': $' + value.toLocaleString() + ' (' + percentage + '%)';;
                             }
                         }
                     }

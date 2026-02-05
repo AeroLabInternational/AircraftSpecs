@@ -24,27 +24,12 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--light-bg);
-    padding-top: 82px;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-}
-
-/* Aerolab Header */
-.aerolab-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 102, 204, 0.15);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    padding: 1rem 0;
-    z-index: 2000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .aerolab-logo {
@@ -59,7 +44,7 @@ body {
     color: white;
     padding: 1rem 0;
     position: sticky;
-    top: 82px;
+    top: 0;
     z-index: 1000;
     box-shadow: var(--shadow);
 }

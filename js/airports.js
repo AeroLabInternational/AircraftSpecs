@@ -32,35 +32,89 @@ const airports = {
     ]
 };
 
-// Function to populate airport selector dropdown
-function populateAirportSelector(selectElementId) {
-    const selectElement = document.getElementById(selectElementId);
-    if (!selectElement) return;
-
-    // Clear existing options
-    selectElement.innerHTML = '';
-
-    // Add Japan airports
-    const japanGroup = document.createElement('optgroup');
-    japanGroup.label = 'Japan';
-    airports.japan.forEach(airport => {
-        const option = document.createElement('option');
-        option.value = `${airport.lat},${airport.lng}`;
-        option.textContent = `${airport.name} (${airport.code})`;
-        japanGroup.appendChild(option);
+// Function to initialize airport search with autocomplete
+function initAirportSearch(inputElementId, suggestionsElementId, onSelectCallback) {
+    const inputElement = document.getElementById(inputElementId);
+    const suggestionsElement = document.getElementById(suggestionsElementId);
+    
+    if (!inputElement || !suggestionsElement) return;
+    
+    let selectedAirport = null;
+    
+    // Get all airports
+    const allAirports = [...airports.japan, ...airports.international];
+    
+    // Set default airport (Tokyo Haneda)
+    selectedAirport = airports.japan[0];
+    inputElement.value = `${selectedAirport.name} (${selectedAirport.code})`;
+    
+    // Handle input changes
+    inputElement.addEventListener('input', function() {
+        const query = this.value.trim();
+        
+        if (query.length === 0) {
+            suggestionsElement.style.display = 'none';
+            return;
+        }
+        
+        // Search airports
+        const matches = searchAirports(query);
+        
+        if (matches.length === 0) {
+            suggestionsElement.style.display = 'none';
+            return;
+        }
+        
+        // Display suggestions
+        suggestionsElement.innerHTML = '';
+        matches.forEach(airport => {
+            const suggestion = document.createElement('div');
+            suggestion.style.cssText = 'padding: 0.75rem 1rem; cursor: pointer; border-bottom: 1px solid #f0f0f0; transition: background 0.2s;';
+            suggestion.innerHTML = `<strong>${airport.code}</strong> - ${airport.name}`;
+            
+            suggestion.addEventListener('mouseenter', function() {
+                this.style.background = '#f5f7fa';
+            });
+            
+            suggestion.addEventListener('mouseleave', function() {
+                this.style.background = 'white';
+            });
+            
+            suggestion.addEventListener('click', function() {
+                selectedAirport = airport;
+                inputElement.value = `${airport.name} (${airport.code})`;
+                suggestionsElement.style.display = 'none';
+                
+                // Call the callback with airport coordinates
+                if (onSelectCallback) {
+                    onSelectCallback(airport.lat, airport.lng);
+                }
+            });
+            
+            suggestionsElement.appendChild(suggestion);
+        });
+        
+        suggestionsElement.style.display = 'block';
     });
-    selectElement.appendChild(japanGroup);
-
-    // Add International airports
-    const intlGroup = document.createElement('optgroup');
-    intlGroup.label = 'International';
-    airports.international.forEach(airport => {
-        const option = document.createElement('option');
-        option.value = `${airport.lat},${airport.lng}`;
-        option.textContent = `${airport.name} (${airport.code})`;
-        intlGroup.appendChild(option);
+    
+    // Close suggestions when clicking outside
+    document.addEventListener('click', function(e) {
+        if (e.target !== inputElement && e.target !== suggestionsElement) {
+            suggestionsElement.style.display = 'none';
+        }
     });
-    selectElement.appendChild(intlGroup);
+    
+    // Handle Enter key
+    inputElement.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            const firstSuggestion = suggestionsElement.querySelector('div');
+            if (firstSuggestion) {
+                firstSuggestion.click();
+            }
+        }
+    });
+    
+    return selectedAirport;
 }
 
 // Function to get airport by code

@@ -20,11 +20,6 @@
                     <img src="../images/Aerolab/AerolabLogo.png" alt="Aerolab Logo" class="aerolab-logo">
                 </a>
             </div>
-            <ul class="nav-menu">
-                <li><a href="../Home.html">Home</a></li>
-                <li><a href="../Home.html#aircraft-types">Aircraft Types</a></li>
-                <li><a href="../Brands/Gulfstream.html">Gulfstream</a></li>
-            </ul>
             <div class="nav-right">
                 <button class="language-switcher" id="langSwitcher">
                     <span class="lang-icon">🇺🇸</span>
@@ -44,8 +39,8 @@
     <header class="aircraft-detail-header">
         <div class="container">
             <h1>Gulfstream G550</h1>
-            <img src="../images/Gulfstream/GulfstreamG550/GulfstreamG550Main.jpg" alt="Gulfstream G550" class="aircraft-hero-image" style="width: 100%; max-width: 1000px; height: auto; border-radius: 8px; margin-top: 1rem; display: block; margin-left: auto; margin-right: auto;">
-            <p class="aircraft-type" style="margin-top: 1rem; font-size: 1.1rem;">The Gulfstream G550, manufactured from 2003-2021, requires a 2 person crew and can transport up to 18 passengers. The aircraft has a maximum operating altitude of 51,000 ft, a normal cruise speed of 488 KTS / 561 MPH, and a 6,750 NM seats-full range.</p>
+            <img src="../images/Gulfstream/GulfstreamG550/GulfstreamG550Main.png" alt="Gulfstream G550" class="aircraft-hero-image" style="width: 100%; max-width: 1000px; height: auto; border-radius: 8px; margin-top: 1rem; display: block; margin-left: auto; margin-right: auto;">
+            <p class="aircraft-type" style="margin-top: 1rem; font-size: 1.1rem;">The Gulfstream G550, manufactured from 2003-2021, requires a 2 person crew and can transport up to 18 passengers. The aircraft has a maximum operating altitude of 15,545 m (51,000 ft), a normal cruise speed of 904 km/h (488 KTS), and a 12,501 km (6,750 NM) seats-full range.</p>
         </div>
     </header>
 
@@ -57,7 +52,6 @@
                     <button class="tab-button active" onclick="openTab(event, 'summary')">Summary</button>
                     <button class="tab-button" onclick="openTab(event, 'cost')">Cost</button>
                     <button class="tab-button" onclick="openTab(event, 'performance')">Performance</button>
-                    <button class="tab-button" onclick="openTab(event, 'avionics')">Avionics</button>
                     <button class="tab-button" onclick="openTab(event, 'interior')">Interior</button>
                     <button class="tab-button" onclick="openTab(event, 'exterior')">Exterior</button>
                 </div>
@@ -70,13 +64,13 @@
                         <div class="summary-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                             <h3>Ferry Range</h3>
                             <div class="value">6,776 NM</div>
-                            <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">12,548 km / 7,798 SM</p>
+                            <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">12,548 KM / 7,798 SM</p>
                         </div>
                         
                         <div class="summary-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
                             <h3>Normal Cruise Speed</h3>
                             <div class="value">488 KTS</div>
-                            <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">904 km/h / 561 MPH</p>
+                            <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">904 KMH / 561 MPH</p>
                         </div>
                         
                         <div class="summary-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
@@ -275,15 +269,15 @@
                             <h3>Speed Performance</h3>
                             <div class="info-item">
                                 <span class="info-item-label">Maximum Speed</span>
-                                <span class="info-item-value">516 KTS / 594 MPH / 956 km/h</span>
+                                <span class="info-item-value">516 KTS / 594 MPH / 956 KMH</span>
                             </div>
                             <div class="info-item">
                                 <span class="info-item-label">Normal Cruise Speed</span>
-                                <span class="info-item-value">488 KTS / 561 MPH / 904 km/h</span>
+                                <span class="info-item-value">488 KTS / 561 MPH / 904 KMH</span>
                             </div>
                             <div class="info-item">
                                 <span class="info-item-label">Long-Range Cruise</span>
-                                <span class="info-item-value">459 KTS / 528 MPH / 850 km/h</span>
+                                <span class="info-item-value">459 KTS / 528 MPH / 850 KMH</span>
                             </div>
                         </div>
 
@@ -291,11 +285,11 @@
                             <h3>Range Capabilities</h3>
                             <div class="info-item">
                                 <span class="info-item-label">Maximum Range</span>
-                                <span class="info-item-value">6,750 NM / 12,501 km / 7,767 SM</span>
+                                <span class="info-item-value">6,750 NM / 12,501 KM / 7,767 SM</span>
                             </div>
                             <div class="info-item">
                                 <span class="info-item-label">Ferry Range</span>
-                                <span class="info-item-value">6,776 NM / 12,548 km / 7,798 SM</span>
+                                <span class="info-item-value">6,776 NM / 12,548 KM / 7,798 SM</span>
                             </div>
                             <div class="info-item">
                                 <span class="info-item-label">Service Ceiling</span>
@@ -345,7 +339,7 @@
                         <h2 style="margin-bottom: 2rem;">Runway Length Requirements</h2>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
                             <div style="text-align: center;">
-                                <img src="../images/AircraftRunway.png" alt="Aircraft Runway" style="width: 90%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                                <img src="../images/AircraftRunway.jpg" alt="Aircraft Runway" style="width: 90%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                             </div>
                             <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                                 <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">Runway Distance Requirements</h3>
@@ -359,238 +353,36 @@
                     <div style="margin-top: 3rem;">
                         <h2 style="margin-bottom: 1.5rem;">Interactive Range Map</h2>
                         <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <div style="margin-bottom: 1.5rem;">
+                            <div style="margin-bottom: 1.5rem; position: relative;">
                                 <label for="airportSearch" style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-dark);">
-                                    Select Departure Airport:
+                                    Search Departure Airport:
                                 </label>
-                                <select id="airportSearch" style="width: 100%; max-width: 500px; padding: 0.75rem; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1rem; background: white;">
-                                </select>
+                                <input 
+                                    type="text" 
+                                    id="airportSearch" 
+                                    placeholder="Search by airport name or code (e.g., Tokyo or HND)..."
+                                    autocomplete="off"
+                                    style="width: 100%; max-width: 500px; padding: 0.75rem; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1rem; background: white;"
+                                >
+                                <div id="airportSuggestions" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; max-width: 500px; max-height: 300px; overflow-y: auto; background: white; border: 2px solid var(--border-color); border-top: none; border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; margin-top: -8px;"></div>
                                 <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--text-light);">
-                                    Select an airport to see the G550's range from that location
+                                    Search and select an airport to see the G550's range from that location
                                 </p>
                             </div>
                             <div style="margin-bottom: 1rem;">
                                 <div style="display: flex; gap: 2rem; justify-content: center; align-items: center;">
                                     <div style="display: flex; align-items: center; gap: 0.5rem;">
                                         <div style="width: 20px; height: 20px; background: rgba(54, 162, 235, 0.3); border: 2px solid rgba(54, 162, 235, 0.8); border-radius: 50%;"></div>
-                                        <span style="font-size: 0.9rem;">Ferry Range: 6,776 NM (12,548 km)</span>
+                                        <span style="font-size: 0.9rem;">Ferry Range: 6,776 NM (12,548 KM)</span>
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 0.5rem;">
                                         <div style="width: 20px; height: 20px; background: rgba(255, 99, 132, 0.3); border: 2px solid rgba(255, 99, 132, 0.8); border-radius: 50%;"></div>
-                                        <span style="font-size: 0.9rem;">Max Range (8 pax): 6,750 NM (12,501 km)</span>
+                                        <span style="font-size: 0.9rem;">Max Range (8 pax): 6,750 NM (12,501 KM)</span>
                                     </div>
                                 </div>
                             </div>
                             <div id="rangeMap" style="height: 600px; border-radius: 8px; overflow: hidden;"></div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Avionics Tab -->
-                <div id="avionics" class="tab-content">
-                    <h2 style="margin-bottom: 1.5rem;">Gulfstream G550 Avionics</h2>
-                    
-                    <div class="info-grid">
-                        <div class="info-card">
-                            <h3>PlaneView II Cockpit</h3>
-                            <div class="info-item">
-                                <span class="info-item-label">Avionics Suite</span>
-                                <span class="info-item-value">Honeywell PlaneView II</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Primary Flight Displays</span>
-                                <span class="info-item-value">4× 14-inch LCD screens</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Display Technology</span>
-                                <span class="info-item-value">Active Matrix LCD</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Cursor Control Device</span>
-                                <span class="info-item-value">Dual touchpad controllers</span>
-                            </div>
-                        </div>
-
-                        <div class="info-card">
-                            <h3>Enhanced Vision Systems</h3>
-                            <div class="info-item">
-                                <span class="info-item-label">EVS</span>
-                                <span class="info-item-value">Enhanced Vision System</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">HUD</span>
-                                <span class="info-item-value">Head-Up Display (optional)</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">SVS</span>
-                                <span class="info-item-value">Synthetic Vision System</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Infrared Camera</span>
-                                <span class="info-item-value">Forward-looking infrared (FLIR)</span>
-                            </div>
-                        </div>
-
-                        <div class="info-card">
-                            <h3>Flight Management</h3>
-                            <div class="info-item">
-                                <span class="info-item-label">FMS</span>
-                                <span class="info-item-value">Dual Flight Management System</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Autopilot</span>
-                                <span class="info-item-value">Dual digital autopilot</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Autothrottle</span>
-                                <span class="info-item-value">Integrated autothrottle system</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Flight Director</span>
-                                <span class="info-item-value">Dual flight director</span>
-                            </div>
-                        </div>
-
-                        <div class="info-card">
-                            <h3>Navigation Systems</h3>
-                            <div class="info-item">
-                                <span class="info-item-label">GPS</span>
-                                <span class="info-item-value">Dual GPS with WAAS/SBAS</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Inertial Reference</span>
-                                <span class="info-item-value">Dual Laser IRS (LASEREF VI)</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">VOR/DME</span>
-                                <span class="info-item-value">Dual VOR/DME receivers</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">ADF</span>
-                                <span class="info-item-value">Dual ADF receivers</span>
-                            </div>
-                        </div>
-
-                        <div class="info-card">
-                            <h3>Communication Systems</h3>
-                            <div class="info-item">
-                                <span class="info-item-label">VHF Radios</span>
-                                <span class="info-item-value">3× VHF transceivers</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">HF Radio</span>
-                                <span class="info-item-value">HF transceiver (optional)</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">SATCOM</span>
-                                <span class="info-item-value">SwiftBroadband satellite communications</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">SELCAL</span>
-                                <span class="info-item-value">Selective calling system</span>
-                            </div>
-                        </div>
-
-                        <div class="info-card">
-                            <h3>Weather & Safety Systems</h3>
-                            <div class="info-item">
-                                <span class="info-item-label">Weather Radar</span>
-                                <span class="info-item-value">Honeywell RDR-4B color radar</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">TCAS</span>
-                                <span class="info-item-value">TCAS II (traffic collision avoidance)</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">EGPWS</span>
-                                <span class="info-item-value">Enhanced ground proximity warning</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Wind Shear Detection</span>
-                                <span class="info-item-value">Predictive windshear system</span>
-                            </div>
-                        </div>
-
-                        <div class="info-card">
-                            <h3>Surveillance & Transponder</h3>
-                            <div class="info-item">
-                                <span class="info-item-label">Transponder</span>
-                                <span class="info-item-value">Dual Mode S transponders</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">ADS-B</span>
-                                <span class="info-item-value">ADS-B Out/In capability</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Traffic Display</span>
-                                <span class="info-item-value">Integrated traffic information</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Weather Datalink</span>
-                                <span class="info-item-value">XM/SiriusXM weather uplink</span>
-                            </div>
-                        </div>
-
-                        <div class="info-card">
-                            <h3>Landing Systems</h3>
-                            <div class="info-item">
-                                <span class="info-item-label">ILS</span>
-                                <span class="info-item-value">Dual ILS receivers</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Autoland</span>
-                                <span class="info-item-value">CAT IIIb capability</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Radio Altimeter</span>
-                                <span class="info-item-value">Dual radio altimeters</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Marker Beacon</span>
-                                <span class="info-item-value">Integrated marker receiver</span>
-                            </div>
-                        </div>
-
-                        <div class="info-card">
-                            <h3>Data Recording & Monitoring</h3>
-                            <div class="info-item">
-                                <span class="info-item-label">FDR</span>
-                                <span class="info-item-value">Flight Data Recorder</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">CVR</span>
-                                <span class="info-item-value">Cockpit Voice Recorder</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">ACARS</span>
-                                <span class="info-item-value">Aircraft Communications Addressing</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Engine Monitoring</span>
-                                <span class="info-item-value">EICAS engine indication system</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 3rem; text-align: center;">
-                        <h2 style="margin-bottom: 1.5rem; color: var(--primary-color);">PlaneView II Cockpit</h2>
-                        <img src="../images/Gulfstream/GulfstreamG550/GulfstreamG550Cockpit.jpg" alt="Gulfstream G550 Cockpit" style="width: 100%; max-width: 1000px; height: auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); margin: 0 auto; display: block;">
-                    </div>
-
-                    <div style="margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px;">
-                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Avionics Highlights</h3>
-                        <ul style="line-height: 2; color: var(--text-dark);">
-                            <li>PlaneView II represents one of the most advanced business jet avionics systems</li>
-                            <li>Four large 14-inch primary flight displays provide exceptional situational awareness</li>
-                            <li>Enhanced Vision System (EVS) enables operations in low visibility conditions</li>
-                            <li>Synthetic Vision System provides 3D terrain and obstacle visualization</li>
-                            <li>CAT IIIb autoland capability allows landings with visibility as low as 150 feet RVR</li>
-                            <li>Dual laser inertial reference systems provide highly accurate navigation</li>
-                            <li>Integrated cursor control devices simplify pilot workload</li>
-                            <li>Advanced weather radar with turbulence detection and windshear warning</li>
-                            <li>Full ADS-B Out/In compliance for future airspace requirements</li>
-                            <li>Satellite communications for worldwide voice and data connectivity</li>
-                        </ul>
                     </div>
                 </div>
 
@@ -676,19 +468,9 @@
                         </div>
                     </div>
 
-                    <div style="margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px;">
-                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Interior Highlights</h3>
-                        <ul style="line-height: 2; color: var(--text-dark);">
-                            <li>Four distinct living areas with customizable layouts</li>
-                            <li>Full galley with modern appliances</li>
-                            <li>Private lavatory with enclosed shower option</li>
-                            <li>PlaneView II avionics-inspired cabin management system</li>
-                            <li>High-speed Ku-band connectivity</li>
-                            <li>100% fresh air circulation every 2 minutes</li>
-                            <li>Ion-purified air with plasma ionization</li>
-                            <li>LED lighting with customizable settings</li>
-                            <li>Berthing options for overnight flights</li>
-                        </ul>
+                    <div style="margin-top: 3rem; text-align: center;">
+                        <h2 style="margin-bottom: 1.5rem; color: var(--primary-color);">PlaneView II Cockpit</h2>
+                        <img src="../images/Gulfstream/GulfstreamG550/GulfstreamG550Cockpit.jpg" alt="Gulfstream G550 Cockpit" style="width: 100%; max-width: 1000px; height: auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); margin: 0 auto; display: block;">
                     </div>
                 </div>
 
@@ -736,57 +518,6 @@
                                 <span class="info-item-value">30,770 lbf (136.8 kN)</span>
                             </div>
                         </div>
-
-                        <div class="info-card">
-                            <h3>Design Features</h3>
-                            <div class="info-item">
-                                <span class="info-item-label">Wing Design</span>
-                                <span class="info-item-value">Swept-back supercritical</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Wing Sweep</span>
-                                <span class="info-item-value">25 degrees</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Tail Configuration</span>
-                                <span class="info-item-value">T-tail</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Landing Gear</span>
-                                <span class="info-item-value">Retractable tricycle</span>
-                            </div>
-                        </div>
-
-                        <div class="info-card">
-                            <h3>Materials & Construction</h3>
-                            <div class="info-item">
-                                <span class="info-item-label">Fuselage Construction</span>
-                                <span class="info-item-value">Aluminum alloy</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Wing Construction</span>
-                                <span class="info-item-value">Aluminum with composite elements</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-item-label">Fuel Tanks</span>
-                                <span class="info-item-value">Integral wing tanks</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px;">
-                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Exterior Features</h3>
-                        <ul style="line-height: 2; color: var(--text-dark);">
-                            <li>Advanced supercritical wing design for optimal efficiency</li>
-                            <li>Winglets for improved aerodynamic performance</li>
-                            <li>Enhanced Vision System (EVS) for low-visibility operations</li>
-                            <li>Head-Up Display (HUD) system</li>
-                            <li>PlaneView II avionics suite</li>
-                            <li>Weather radar with turbulence detection</li>
-                            <li>TCAS II traffic alert and collision avoidance</li>
-                            <li>Dual GPS navigation systems</li>
-                            <li>Satellite communications equipment</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -828,14 +559,16 @@
         // G550 AIRCRAFT DATA
         // ===========================
 
-        // Populate airport selector
-        populateAirportSelector('airportSearch');
-
         // Initialize Cost Calculator
         initCostCalculator(3900, 785000, 450);
 
-        // Initialize Interactive Range Map
-        initRangeMap(35.5494, 139.7798, 6776, 6750, 'G550');
+        // Initialize Interactive Range Map and get the update function
+        const updateRangeMap = initRangeMap(35.5494, 139.7798, 6776, 6750, 'G550');
+
+        // Initialize Airport Search with autocomplete
+        initAirportSearch('airportSearch', 'airportSuggestions', function(lat, lng) {
+            updateRangeMap(lat, lng);
+        });
 
         // Initialize Runway Chart
         initRunwayChart(5910, 5910, 9870, 2770);
