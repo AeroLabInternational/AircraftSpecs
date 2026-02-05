@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Jets - Aircraft Database</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .aircraft-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .aircraft-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .aircraft-card.available:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+        
+        .aircraft-card.unavailable {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .aircraft-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .aircraft-card-content {
+            padding: 1.5rem;
+        }
+        
+        .aircraft-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .aircraft-card-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .aircraft-card-spec {
+            font-size: 0.9rem;
+        }
+        
+        .aircraft-card-spec-label {
+            color: var(--text-light);
+            display: block;
+            font-size: 0.8rem;
+        }
+        
+        .aircraft-card-spec-value {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        .status-available {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-coming-soon {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .aircraft-type-overview {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .aircraft-type-overview h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .aircraft-type-overview p {
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+        
+        /* Category Sections */
+        .category-section {
+            margin: 2rem 0;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+        
+        .category-toggle {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            padding: 1.5rem;
+            text-align: left;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .category-toggle:hover {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+        }
+        
+        .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+        
+        .toggle-icon.rotated {
+            transform: rotate(-90deg);
+        }
+        
+        .category-content {
+            padding: 2rem;
+            background: #f8f9fa;
+        }
+        
+        .category-description {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <header class="aerolab-header">
+        <div class="container">
+            <img src="../images/Aerolab/AerolabLogo.png" alt="Aerolab Logo" class="aerolab-logo">
+        </div>
+    </header>
+    
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../Home.html">✈️ Aircraft Specs</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../Home.html">Home</a></li>
+                <li><a href="../Home.html#aircraft-types">Aircraft Types</a></li>
+                <li><a href="BusinessJet.html" class="active">Business Jet</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="aircraft-detail-header">
+        <div class="container">
+            <h1>Business Jets</h1>
+            <p class="aircraft-type">Executive & Private Aviation</p>
+        </div>
+    </header>
+
+    <section class="detail-content">
+        <div class="container">
+            <div class="aircraft-type-overview">
+                <h2>About Business Jets</h2>
+                <p>Business jets are aircraft designed for transporting small groups of people in comfort and style. They range from light jets perfect for regional travel to ultra-long-range aircraft capable of intercontinental flights. Business jets offer flexibility, privacy, time savings, and access to smaller airports unavailable to commercial airlines.</p>
+                <p style="margin-top: 1rem;">Browse by aircraft size category below to find the perfect business jet for your mission requirements.</p>
+            </div>
+
+            <!-- Light Business Jets -->
+            <div class="category-section">
+                <button class="category-toggle" onclick="toggleCategory('light')">
+                    <span class="toggle-icon">▼</span>
+                    <h2 style="display: inline; margin: 0;">Light Business Jets</h2>
+                </button>
+                <div id="light" class="category-content">
+                    <p class="category-description">Light jets typically seat 4-8 passengers and have a range of 1,500-2,000 nautical miles. Perfect for regional travel with lower operating costs. Ideal for short to medium-distance flights with small groups.</p>
+                    
+                    <div class="aircraft-grid">
+                        <a href="../Gulfstream/GulfstreamG550.html" class="aircraft-card available">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>HondaJet HA-420</h3>
+                                <span class="status-badge status-available">View Details</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Innovative light jet with over-the-wing engine mount design</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">1,437 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">420 KTS</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 5</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="aircraft-card unavailable">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>Cessna Citation M2</h3>
+                                <span class="status-badge status-coming-soon">Coming Soon</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Popular entry-level business jet with proven reliability</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">1,550 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">404 KTS</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 7</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="aircraft-card unavailable">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>Embraer Phenom 100</h3>
+                                <span class="status-badge status-coming-soon">Coming Soon</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Compact and efficient light jet with spacious cabin</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">1,178 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">406 KTS</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 6</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Midsize Business Jets -->
+            <div class="category-section">
+                <button class="category-toggle" onclick="toggleCategory('midsize')">
+                    <span class="toggle-icon">▼</span>
+                    <h2 style="display: inline; margin: 0;">Midsize Business Jets</h2>
+                </button>
+                <div id="midsize" class="category-content" style="display: none;">
+                    <p class="category-description">Midsize jets typically seat 7-9 passengers and have a range of 2,500-3,500 nautical miles. Perfect balance of cabin space, range, and operating costs. Suitable for transcontinental flights with enhanced comfort.</p>
+                    
+                    <div class="aircraft-grid">
+                        <div class="aircraft-card unavailable">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>Cessna Citation Latitude</h3>
+                                <span class="status-badge status-coming-soon">Coming Soon</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Spacious midsize jet with stand-up cabin</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">2,700 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">446 KTS</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 9</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="aircraft-card unavailable">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>Learjet 75 Liberty</h3>
+                                <span class="status-badge status-coming-soon">Coming Soon</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Fast and efficient midsize business jet</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">2,080 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">465 KTS</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 9</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Super Midsize Business Jets -->
+            <div class="category-section">
+                <button class="category-toggle" onclick="toggleCategory('supermid')">
+                    <span class="toggle-icon">▼</span>
+                    <h2 style="display: inline; margin: 0;">Super Midsize Business Jets</h2>
+                </button>
+                <div id="supermid" class="category-content" style="display: none;">
+                    <p class="category-description">Super midsize jets typically seat 8-10 passengers and have a range of 3,500-4,500 nautical miles. Excellent cabin space with transcontinental capability. Stand-up cabins with full galley and lavatory facilities.</p>
+                    
+                    <div class="aircraft-grid">
+                        <div class="aircraft-card unavailable">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>Bombardier Challenger 350</h3>
+                                <span class="status-badge status-coming-soon">Coming Soon</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Best-selling super midsize business jet</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">3,200 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">470 KTS</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 10</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="aircraft-card unavailable">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>Cessna Citation Longitude</h3>
+                                <span class="status-badge status-coming-soon">Coming Soon</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Advanced super midsize with exceptional range</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">3,500 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">483 KTS</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 12</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Large Business Jets -->
+            <div class="category-section">
+                <button class="category-toggle" onclick="toggleCategory('large')">
+                    <span class="toggle-icon">▼</span>
+                    <h2 style="display: inline; margin: 0;">Large Business Jets</h2>
+                </button>
+                <div id="large" class="category-content" style="display: none;">
+                    <p class="category-description">Large jets typically seat 10-16 passengers and have a range of 4,500-6,000 nautical miles. Spacious cabins with multiple living areas. Capable of non-stop coast-to-coast and transatlantic flights.</p>
+                    
+                    <div class="aircraft-grid">
+                        <a href="../Gulfstream/GulfstreamG550.html" class="aircraft-card available">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>Gulfstream G550</h3>
+                                <span class="status-badge status-available">View Details</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Ultra-long-range business jet with exceptional performance and cabin comfort</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">6,750 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">516 KTS</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 18</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="aircraft-card unavailable">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>Bombardier Global 5500</h3>
+                                <span class="status-badge status-coming-soon">Coming Soon</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Long-range business jet with exceptional cabin comfort</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">5,900 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">Mach 0.90</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 16</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ultra Long-Range Business Jets -->
+            <div class="category-section">
+                <button class="category-toggle" onclick="toggleCategory('ultra')">
+                    <span class="toggle-icon">▼</span>
+                    <h2 style="display: inline; margin: 0;">Ultra Long-Range Business Jets</h2>
+                </button>
+                <div id="ultra" class="category-content" style="display: none;">
+                    <p class="category-description">Ultra long-range jets typically seat 12-19 passengers and have a range exceeding 6,000 nautical miles. The pinnacle of business aviation with intercontinental range. Multiple cabin zones, full galleys, and bedroom suites available.</p>
+                    
+                    <div class="aircraft-grid">
+                        <a href="../Gulfstream/GulfstreamG650.html" class="aircraft-card available">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>Gulfstream G650</h3>
+                                <span class="status-badge status-available">View Details</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Flagship ultra-long-range aircraft with the highest speed and longest range</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">7,000 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">Mach 0.925</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 19</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="aircraft-card unavailable">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>Gulfstream G650ER</h3>
+                                <span class="status-badge status-coming-soon">Coming Soon</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Extended range variant with record-breaking capabilities</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">7,500 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">Mach 0.925</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 19</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="aircraft-card unavailable">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>Gulfstream G700</h3>
+                                <span class="status-badge status-coming-soon">Coming Soon</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Next-generation flagship with industry-leading cabin space</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">7,500 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">Mach 0.925</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 19</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="aircraft-card unavailable">
+                            <div class="aircraft-card-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                                ✈️
+                            </div>
+                            <div class="aircraft-card-content">
+                                <h3>Bombardier Global 7500</h3>
+                                <span class="status-badge status-coming-soon">Coming Soon</span>
+                                <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">World's longest-range purpose-built business jet</p>
+                                <div class="aircraft-card-specs">
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Range</span>
+                                        <span class="aircraft-card-spec-value">7,700 NM</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Max Speed</span>
+                                        <span class="aircraft-card-spec-value">Mach 0.925</span>
+                                    </div>
+                                    <div class="aircraft-card-spec">
+                                        <span class="aircraft-card-spec-label">Passengers</span>
+                                        <span class="aircraft-card-spec-value">Up to 19</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Aircraft Specifications Database. All rights reserved.</p>
+            <p>Data compiled from official manufacturer specifications and aviation databases.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        function toggleCategory(categoryId) {
+            const content = document.getElementById(categoryId);
+            const button = content.previousElementSibling;
+            const icon = button.querySelector('.toggle-icon');
+            
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                icon.classList.add('rotated');
+            } else {
+                content.style.display = 'none';
+                icon.classList.remove('rotated');
+            }
+        }
+    </script>
+</body>
+</html>

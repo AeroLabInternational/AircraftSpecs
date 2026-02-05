@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aircraft Specifications Database</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="aerolab-header">
+        <div class="container">
+            <img src="images/Aerolab/AerolabLogo.png" alt="Aerolab Logo" class="aerolab-logo">
+        </div>
+    </header>
+    
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="Home.html">✈️ Aircraft Specs</a>
+            </div>
+            <div class="nav-right">
+                <button class="language-switcher" id="langSwitcher">
+                    <span class="lang-icon">🌐</span>
+                    <span class="lang-text">English</span>
+                </button>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search aircraft...">
+                    <button class="search-button" id="searchButton">
+                        <span>🔍</span>
+                    </button>
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Aircraft Specifications Database</h1>
+            <p>Explore detailed specifications, performance data, and technical information for aircraft from leading manufacturers worldwide</p>
+            <a href="#aircraft-types" class="btn btn-primary">Explore Aircraft</a>
+        </div>
+    </header>
+
+    <section id="aircraft-types" class="aircraft-types-section">
+        <div class="container">
+            <h2>Browse by Aircraft Type</h2>
+            <p class="section-subtitle">Select an aircraft type to explore specifications and performance data</p>
+            
+            <div class="aircraft-types-grid">
+                <a href="AircraftType/BusinessJet.html" class="aircraft-type-card">
+                    <div class="aircraft-type-icon">🛩️</div>
+                    <h3>Business Jet</h3>
+                    <p>Executive & Private Aviation</p>
+                </a>
+
+                <a href="types/turboprop.html" class="aircraft-type-card">
+                    <div class="aircraft-type-icon">✈️</div>
+                    <h3>TurboProp Aircraft</h3>
+                    <p>Efficient Regional Transport</p>
+                </a>
+
+                <a href="types/piston-aircraft.html" class="aircraft-type-card">
+                    <div class="aircraft-type-icon">🛫</div>
+                    <h3>Piston Aircraft</h3>
+                    <p>General Aviation</p>
+                </a>
+
+                <a href="types/jet-airliner.html" class="aircraft-type-card">
+                    <div class="aircraft-type-icon">🛬</div>
+                    <h3>Jet Airliner</h3>
+                    <p>Commercial Passenger Jets</p>
+                </a>
+
+                <a href="types/piston-rotorcraft.html" class="aircraft-type-card">
+                    <div class="aircraft-type-icon">🚁</div>
+                    <h3>Piston Rotorcraft</h3>
+                    <p>Light Helicopters</p>
+                </a>
+
+                <a href="types/turbine-rotorcraft.html" class="aircraft-type-card">
+                    <div class="aircraft-type-icon">🚁</div>
+                    <h3>Turbine Rotorcraft</h3>
+                    <p>Heavy & Medium Helicopters</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2>What You'll Find</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Interactive Charts</h3>
+                    <p>Visualize performance data with interactive graphs and comparisons</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📐</div>
+                    <h3>Detailed Specifications</h3>
+                    <p>Comprehensive technical data including dimensions, weights, and capacities</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Performance Metrics</h3>
+                    <p>Speed, range, ceiling, and fuel consumption data</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>High-Quality Images</h3>
+                    <p>Detailed photos and diagrams of each aircraft</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About This Database</h2>
+            <p>Our comprehensive aircraft specifications database provides accurate, up-to-date information for aviation enthusiasts, professionals, and researchers. Each aircraft profile includes detailed technical specifications, performance data, and interactive visualizations to help you understand the capabilities and characteristics of modern and historical aircraft.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Aircraft Specifications Database. All rights reserved.</p>
+            <p>Data compiled from official manufacturer specifications and aviation databases.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

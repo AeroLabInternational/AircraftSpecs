@@ -39,12 +39,12 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(0, 102, 204, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     padding: 1rem 0;
     z-index: 2000;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .aerolab-logo {
@@ -77,6 +77,142 @@ body {
     text-decoration: none;
 }
 
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Language Switcher */
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.language-switcher:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.lang-icon {
+    font-size: 1.2rem;
+}
+
+.lang-text {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Search Container */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 0.5rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px 0 0 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 0.95rem;
+    width: 250px;
+    transition: all 0.3s;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.search-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+    width: 300px;
+}
+
+.search-button {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.search-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    min-width: 350px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+.search-results.active {
+    display: block;
+}
+
+.search-result-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: block;
+    color: var(--text-dark);
+}
+
+.search-result-item:hover {
+    background: var(--light-bg);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-title {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+}
+
+.search-result-type {
+    font-size: 0.875rem;
+    color: var(--text-light);
+}
+
+.search-no-results {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-light);
+}
+
 .nav-menu {
     display: flex;
     list-style: none;
@@ -97,7 +233,10 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.85) 0%, rgba(0, 73, 153, 0.85) 100%), url('../images/Aerolab/AeroLabYS-11.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: white;
     padding: 6rem 0;
     text-align: center;
@@ -150,34 +289,34 @@ body {
     transform: translateY(-2px);
 }
 
-/* Brands Section */
-.brands-section {
+/* Aircraft Types Section */
+.aircraft-types-section {
     padding: 5rem 0;
-    background: white;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 }
 
-.brands-section h2 {
+.aircraft-types-section h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: var(--text-dark);
+    color: white;
 }
 
 .section-subtitle {
     text-align: center;
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 3rem;
     font-size: 1.1rem;
 }
 
-.brands-grid {
+.aircraft-types-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
 }
 
-.brand-card {
+.aircraft-type-card {
     background: var(--card-bg);
     border: 2px solid var(--border-color);
     border-radius: 12px;
@@ -191,24 +330,24 @@ body {
     align-items: center;
 }
 
-.brand-card:hover {
+.aircraft-type-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
     border-color: var(--primary-color);
 }
 
-.brand-icon {
+.aircraft-type-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
 }
 
-.brand-card h3 {
+.aircraft-type-card h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
     color: var(--text-dark);
 }
 
-.brand-card p {
+.aircraft-type-card p {
     color: var(--text-light);
     margin-bottom: 1rem;
 }
@@ -268,13 +407,14 @@ body {
 /* About Section */
 .about-section {
     padding: 5rem 0;
-    background: white;
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.95) 0%, rgba(0, 73, 153, 0.95) 100%);
     text-align: center;
 }
 
 .about-section h2 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
+    color: white;
 }
 
 .about-section p {
@@ -282,7 +422,7 @@ body {
     margin: 0 auto;
     font-size: 1.1rem;
     line-height: 1.8;
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.95);
 }
 
 /* Footer */
@@ -677,11 +817,36 @@ body {
         font-size: 1rem;
     }
 
+    .nav-right {
+        gap: 0.75rem;
+    }
+
+    .language-switcher {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .lang-text {
+        display: none;
+    }
+
+    .search-input {
+        width: 150px;
+    }
+
+    .search-input:focus {
+        width: 200px;
+    }
+
+    .search-results {
+        min-width: 280px;
+    }
+
     .nav-menu {
         gap: 1rem;
     }
 
-    .brands-grid,
+    .aircraft-types-grid,
     .features-grid {
         grid-template-columns: 1fr;
     }
