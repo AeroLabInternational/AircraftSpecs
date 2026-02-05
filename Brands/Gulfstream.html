@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulfstream Aircraft - Aircraft Database</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .aircraft-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .aircraft-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .aircraft-card.available:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+        
+        .aircraft-card.unavailable {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .aircraft-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .aircraft-card-content {
+            padding: 1.5rem;
+        }
+        
+        .aircraft-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .aircraft-card-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .aircraft-card-spec {
+            font-size: 0.9rem;
+        }
+        
+        .aircraft-card-spec-label {
+            color: var(--text-light);
+            display: block;
+            font-size: 0.8rem;
+        }
+        
+        .aircraft-card-spec-value {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        .status-available {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-coming-soon {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .brand-overview {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+        
+        .brand-overview h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .brand-overview p {
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <header class="aerolab-header">
+        <div class="container">
+            <img src="../images/Aerolab/AerolabLogo.png" alt="Aerolab Logo" class="aerolab-logo">
+        </div>
+    </header>
+    
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../index.html">✈️ Aircraft Specs</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#brands">Brands</a></li>
+                <li><a href="../Brands/Gulfstream.html" class="active">Gulfstream</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="aircraft-detail-header">
+        <div class="container">
+            <h1>Gulfstream Aerospace</h1>
+            <p class="aircraft-type">Premium Business Jet Manufacturer</p>
+        </div>
+    </header>
+
+    <section class="detail-content">
+        <div class="container">
+            <div class="brand-overview">
+                <h2>About Gulfstream</h2>
+                <p>Gulfstream Aerospace Corporation is an American business jet manufacturer headquartered in Savannah, Georgia. A wholly owned subsidiary of General Dynamics, Gulfstream designs, develops, manufactures, markets, services, and supports the world's most technologically advanced business jet aircraft.</p>
+                <p style="margin-top: 1rem;">Founded in 1958, Gulfstream has earned a reputation for producing some of the most luxurious and capable long-range business jets in the world. Their aircraft are known for exceptional performance, cutting-edge technology, and unparalleled comfort.</p>
+            </div>
+
+            <h2 style="margin-top: 3rem; margin-bottom: 1rem;">Gulfstream Aircraft Fleet</h2>
+            <p style="color: var(--text-light); margin-bottom: 2rem;">Select an aircraft to view detailed specifications and performance data</p>
+
+            <div class="aircraft-grid">
+                <!-- G550 - Available -->
+                <a href="../Gulfstream/GulfstreamG550.html" class="aircraft-card available">
+                    <div class="aircraft-card-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        ✈️
+                    </div>
+                    <div class="aircraft-card-content">
+                        <h3>Gulfstream G550</h3>
+                        <span class="status-badge status-available">View Details</span>
+                        <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Ultra-long-range business jet with exceptional performance and cabin comfort</p>
+                        <div class="aircraft-card-specs">
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Range</span>
+                                <span class="aircraft-card-spec-value">6,750 NM</span>
+                            </div>
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Max Speed</span>
+                                <span class="aircraft-card-spec-value">516 KTS</span>
+                            </div>
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Passengers</span>
+                                <span class="aircraft-card-spec-value">Up to 18</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- G650 - Available -->
+                <a href="../Gulfstream/GulfstreamG650.html" class="aircraft-card available">
+                    <div class="aircraft-card-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        ✈️
+                    </div>
+                    <div class="aircraft-card-content">
+                        <h3>Gulfstream G650</h3>
+                        <span class="status-badge status-available">View Details</span>
+                        <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Flagship ultra-long-range aircraft with the highest speed and longest range</p>
+                        <div class="aircraft-card-specs">
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Range</span>
+                                <span class="aircraft-card-spec-value">7,000 NM</span>
+                            </div>
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Max Speed</span>
+                                <span class="aircraft-card-spec-value">Mach 0.925</span>
+                            </div>
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Passengers</span>
+                                <span class="aircraft-card-spec-value">Up to 19</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- G650ER - Coming Soon -->
+                <div class="aircraft-card unavailable">
+                    <div class="aircraft-card-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        ✈️
+                    </div>
+                    <div class="aircraft-card-content">
+                        <h3>Gulfstream G650ER</h3>
+                        <span class="status-badge status-coming-soon">Coming Soon</span>
+                        <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Extended range variant with record-breaking capabilities</p>
+                        <div class="aircraft-card-specs">
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Range</span>
+                                <span class="aircraft-card-spec-value">7,500 NM</span>
+                            </div>
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Max Speed</span>
+                                <span class="aircraft-card-spec-value">Mach 0.925</span>
+                            </div>
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Passengers</span>
+                                <span class="aircraft-card-spec-value">Up to 19</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- G700 - Coming Soon -->
+                <div class="aircraft-card unavailable">
+                    <div class="aircraft-card-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        ✈️
+                    </div>
+                    <div class="aircraft-card-content">
+                        <h3>Gulfstream G700</h3>
+                        <span class="status-badge status-coming-soon">Coming Soon</span>
+                        <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Next-generation flagship with industry-leading cabin space</p>
+                        <div class="aircraft-card-specs">
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Range</span>
+                                <span class="aircraft-card-spec-value">7,500 NM</span>
+                            </div>
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Max Speed</span>
+                                <span class="aircraft-card-spec-value">Mach 0.925</span>
+                            </div>
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Passengers</span>
+                                <span class="aircraft-card-spec-value">Up to 19</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- G500 - Coming Soon -->
+                <div class="aircraft-card unavailable">
+                    <div class="aircraft-card-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        ✈️
+                    </div>
+                    <div class="aircraft-card-content">
+                        <h3>Gulfstream G500</h3>
+                        <span class="status-badge status-coming-soon">Coming Soon</span>
+                        <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">High-performance mid-range business jet with advanced technology</p>
+                        <div class="aircraft-card-specs">
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Range</span>
+                                <span class="aircraft-card-spec-value">5,300 NM</span>
+                            </div>
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Max Speed</span>
+                                <span class="aircraft-card-spec-value">Mach 0.925</span>
+                            </div>
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Passengers</span>
+                                <span class="aircraft-card-spec-value">Up to 19</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- G600 - Coming Soon -->
+                <div class="aircraft-card unavailable">
+                    <div class="aircraft-card-image" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                        ✈️
+                    </div>
+                    <div class="aircraft-card-content">
+                        <h3>Gulfstream G600</h3>
+                        <span class="status-badge status-coming-soon">Coming Soon</span>
+                        <p style="color: var(--text-light); margin-top: 0.75rem; font-size: 0.95rem;">Long-range business jet with exceptional comfort and efficiency</p>
+                        <div class="aircraft-card-specs">
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Range</span>
+                                <span class="aircraft-card-spec-value">6,600 NM</span>
+                            </div>
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Max Speed</span>
+                                <span class="aircraft-card-spec-value">Mach 0.925</span>
+                            </div>
+                            <div class="aircraft-card-spec">
+                                <span class="aircraft-card-spec-label">Passengers</span>
+                                <span class="aircraft-card-spec-value">Up to 19</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Aircraft Specifications Database. All rights reserved.</p>
+            <p>Data compiled from official manufacturer specifications and aviation databases.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
