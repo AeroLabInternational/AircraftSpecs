@@ -39,10 +39,11 @@ if (langSwitcher) {
         `);
         
         elementsToTranslate.forEach(element => {
-            // Skip if it's inside search results, airport suggestions, or has no text
+            // Skip if it's inside search results, airport suggestions, language switcher, or has no text
             if (element.closest('.search-results') || 
                 element.closest('.search-result-item') ||
-                element.closest('#airportSuggestions')) {
+                element.closest('#airportSuggestions') ||
+                element.closest('#langSwitcher')) {
                 return;
             }
             

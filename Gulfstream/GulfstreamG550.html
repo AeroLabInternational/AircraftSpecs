@@ -339,7 +339,7 @@
                         <h2 style="margin-bottom: 2rem;">Runway Length Requirements</h2>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
                             <div style="text-align: center;">
-                                <img src="../images/AircraftRunway.jpg" alt="Aircraft Runway" style="width: 90%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                                <img src="../images/Aerolab/AircraftRunway.jpg" alt="Aircraft Runway" style="width: 90%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
                             </div>
                             <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                                 <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">Runway Distance Requirements</h3>
@@ -373,11 +373,11 @@
                                 <div style="display: flex; gap: 2rem; justify-content: center; align-items: center;">
                                     <div style="display: flex; align-items: center; gap: 0.5rem;">
                                         <div style="width: 20px; height: 20px; background: rgba(54, 162, 235, 0.3); border: 2px solid rgba(54, 162, 235, 0.8); border-radius: 50%;"></div>
-                                        <span style="font-size: 0.9rem;">Ferry Range: 6,776 NM (12,548 KM)</span>
+                                        <span style="font-size: 0.9rem;">Ferry Flight Range: 6,776 NM (12,548 KM)</span>
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 0.5rem;">
                                         <div style="width: 20px; height: 20px; background: rgba(255, 99, 132, 0.3); border: 2px solid rgba(255, 99, 132, 0.8); border-radius: 50%;"></div>
-                                        <span style="font-size: 0.9rem;">Max Range (8 pax): 6,750 NM (12,501 KM)</span>
+                                        <span style="font-size: 0.9rem;">Full Seat Range (18 pax): 4,200 NM (7,778 KM)</span>
                                     </div>
                                 </div>
                             </div>
@@ -553,6 +553,13 @@
             // Show current tab and add active class to button
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
+            
+            // Fix map display when switching to performance tab
+            if (tabName === 'performance' && typeof rangeMap !== 'undefined' && rangeMap) {
+                setTimeout(function() {
+                    rangeMap.invalidateSize();
+                }, 100);
+            }
         }
 
         // ===========================
@@ -563,7 +570,7 @@
         initCostCalculator(3900, 785000, 450);
 
         // Initialize Interactive Range Map and get the update function
-        const updateRangeMap = initRangeMap(35.5494, 139.7798, 6776, 6750, 'G550');
+        const updateRangeMap = initRangeMap(35.5494, 139.7798, 6776, 4200, 'G550');
 
         // Initialize Airport Search with autocomplete
         initAirportSearch('airportSearch', 'airportSuggestions', function(lat, lng) {

@@ -186,7 +186,7 @@ function initRangeMap(defaultLat, defaultLng, ferryRangeNM, passengerRangeNM, ai
 
         // Add OpenStreetMap tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap</a>',
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             maxZoom: 19,
             minZoom: 2,
             crossOrigin: true
@@ -219,7 +219,7 @@ function initRangeMap(defaultLat, defaultLng, ferryRangeNM, passengerRangeNM, ai
             radius: passengerRangeMeters,
             weight: 2
         }).addTo(rangeMap);
-        passengerCircle.bindPopup(`<b>Full Seat Range</b><br>${passengerRangeNM.toLocaleString()} NM (${Math.round(passengerRangeNM * 1.852).toLocaleString()} km)<br><small>With 8 passengers</small>`);
+        passengerCircle.bindPopup(`<b>Full Seat Range</b><br>${passengerRangeNM.toLocaleString()} NM (${Math.round(passengerRangeNM * 1.852).toLocaleString()} km)<br><small>With 18 passengers</small>`);
 
         // Fit map to show both circles
         rangeMap.fitBounds(ferryCircle.getBounds(), { padding: [50, 50] });
@@ -242,13 +242,19 @@ function initRunwayChart(balancedField, part91, part135, landing) {
     const runwayCtx = document.getElementById('runwayChart');
     if (!runwayCtx) return;
 
+    // Convert feet to meters
+    const balancedFieldM = Math.round(balancedField * 0.3048);
+    const part91M = Math.round(part91 * 0.3048);
+    const part135M = Math.round(part135 * 0.3048);
+    const landingM = Math.round(landing * 0.3048);
+
     new Chart(runwayCtx.getContext('2d'), {
         type: 'bar',
         data: {
             labels: ['Balanced Field Length', 'Part 91 Takeoff', 'Part 135 Takeoff', 'Landing Distance'],
             datasets: [{
-                label: 'Distance (feet)',
-                data: [balancedField, part91, part135, landing],
+                label: 'Distance (meters)',
+                data: [balancedFieldM, part91M, part135M, landingM],
                 backgroundColor: [
                     'rgba(0, 51, 153, 0.8)',
                     'rgba(0, 102, 204, 0.8)',
@@ -273,6 +279,7 @@ function initRunwayChart(balancedField, part91, part135, landing) {
                     display: false
                 },
                 tooltip: {
+                    enabled: true,
                     backgroundColor: 'rgba(0, 0, 0, 0.9)',
                     padding: 15,
                     titleFont: {
@@ -287,9 +294,9 @@ function initRunwayChart(balancedField, part91, part135, landing) {
                             return '';
                         },
                         label: function(context) {
-                            const value = context.parsed.x || 0;
-                            const meters = Math.round(value * 0.3048);
-                            return context.label + ': ' + value.toLocaleString() + ' ft (' + meters.toLocaleString() + ' m)';
+                            const meters = context.parsed.x || 0;
+                            const feet = Math.round(meters / 0.3048);
+                            return context.label + ': ' + meters.toLocaleString() + ' m (' + feet.toLocaleString() + ' ft)';
                         }
                     }
                 }
@@ -299,7 +306,7 @@ function initRunwayChart(balancedField, part91, part135, landing) {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Distance (feet)',
+                        text: 'Distance (meters)',
                         font: {
                             size: 12,
                             weight: 'bold'
@@ -363,6 +370,7 @@ function initCostCharts(variableCosts, fixedCosts) {
                         display: false
                     },
                     tooltip: {
+                        enabled: true,
                         backgroundColor: 'rgba(0, 0, 0, 0.9)',
                         padding: 15,
                         titleFont: {
@@ -378,7 +386,7 @@ function initCostCharts(variableCosts, fixedCosts) {
                                 const value = context.parsed || 0;
                                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                 const percentage = ((value / total) * 100).toFixed(1);
-                                return label + ': $' + value.toLocaleString() + ' (' + percentage + '%)';;
+                                return label + ': $' + value.toLocaleString() + ' (' + percentage + '%)';
                             }
                         }
                     }
@@ -421,6 +429,7 @@ function initCostCharts(variableCosts, fixedCosts) {
                         display: false
                     },
                     tooltip: {
+                        enabled: true,
                         backgroundColor: 'rgba(0, 0, 0, 0.9)',
                         padding: 15,
                         titleFont: {
@@ -436,7 +445,7 @@ function initCostCharts(variableCosts, fixedCosts) {
                                 const value = context.parsed || 0;
                                 const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                 const percentage = ((value / total) * 100).toFixed(1);
-                                return label + ': $' + value.toLocaleString() + ' (' + percentage + '%)';;
+                                return label + ': $' + value.toLocaleString() + ' (' + percentage + '%)';
                             }
                         }
                     }
