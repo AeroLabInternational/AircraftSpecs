@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ガルフストリーム G550 スペックシート</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="aerolab-header">
+        <div class="container">
+            <img src="../images/Aerolab/AerolabLogo.png" alt="Aerolab Logo" class="aerolab-logo">
+        </div>
+    </header>
+    
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="../index.html">✈️ Aircraft Specs</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#brands">Brands</a></li>
+                <li><a href="../brands/gulfstream.html">Gulfstream</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="aircraft-detail-header">
+        <div class="container">
+            <h1>ガルフストリーム G550 スペックシート</h1>
+            <img src="../images/Gulfstream/GulfstreamG550/GulfstreamG550Main.jpg" alt="Gulfstream G550" class="aircraft-hero-image" style="width: 100%; max-width: 1000px; height: auto; border-radius: 8px; margin-top: 1rem;">
+            <p class="aircraft-type" style="margin-top: 1rem; font-size: 1.1rem;">The Gulfstream G550, manufactured from 2003-2021, requires a 2 person crew and can transport up to 18 passengers. The aircraft has a maximum operating altitude of 51,000 ft, a normal cruise speed of 488 KTS / 561 MPH, and a 6,750 NM seats-full range.</p>
+        </div>
+    </header>
+
+    <section class="detail-content">
+        <div class="container">
+            <!-- Tabbed Navigation -->
+            <div class="tabs-container">
+                <div class="tabs">
+                    <button class="tab-button active" onclick="openTab(event, 'summary')">Summary</button>
+                    <button class="tab-button" onclick="openTab(event, 'cost')">Cost</button>
+                    <button class="tab-button" onclick="openTab(event, 'performance')">Performance</button>
+                    <button class="tab-button" onclick="openTab(event, 'interior')">Interior</button>
+                    <button class="tab-button" onclick="openTab(event, 'exterior')">Exterior</button>
+                </div>
+
+                <!-- Summary Tab -->
+                <div id="summary" class="tab-content active">
+                    <h2 style="margin-bottom: 1.5rem;">Gulfstream G550 Summary</h2>
+                    
+                    <div class="summary-grid">
+                        <div class="summary-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <h3>Ferry Range</h3>
+                            <div class="value">6,776 NM</div>
+                            <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">7,798 SM</p>
+                        </div>
+                        
+                        <div class="summary-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            <h3>Normal Cruise Speed</h3>
+                            <div class="value">488 KTS</div>
+                            <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">561 MPH</p>
+                        </div>
+                        
+                        <div class="summary-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            <h3>Maximum Passengers</h3>
+                            <div class="value">18</div>
+                        </div>
+                        
+                        <div class="summary-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                            <h3>Cost of Acquisition</h3>
+                            <div class="value">$61.5M</div>
+                            <p style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.5rem;">New Price</p>
+                        </div>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>General Specifications</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">製造者 (Manufacturer)</span>
+                                <span class="info-item-value">ガルフストリーム・エアロスペース</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Production Years</span>
+                                <span class="info-item-value">2003 - 2021</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Units Produced</span>
+                                <span class="info-item-value">~600 aircraft</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Active Fleet</span>
+                                <span class="info-item-value">~550 aircraft</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Cabin Dimensions</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Cabin Volume</span>
+                                <span class="info-item-value">1,923 cu ft</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Cabin Height</span>
+                                <span class="info-item-value">6 ft 2 in (1.88 m)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Cabin Width</span>
+                                <span class="info-item-value">7 ft 4 in (2.24 m)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Cabin Length</span>
+                                <span class="info-item-value">43 ft 11 in (13.4 m)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Payload & Fuel</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Useful Payload w/ Full Fuel</span>
+                                <span class="info-item-value">3,150 lbs</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Total Baggage Capacity</span>
+                                <span class="info-item-value">226 cu ft</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Fuel Capacity</span>
+                                <span class="info-item-value">6,035 US gal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cockpit Section -->
+                    <div class="cockpit-section" style="margin-top: 3rem;">
+                        <h2>Cockpit</h2>
+                        <img src="../images/Gulfstream/GulfstreamG550/GulfstreamG550Cockpit.jpg" alt="Gulfstream G550 Cockpit" style="width: 100%; max-width: 1000px; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 1rem;">
+                    </div>
+                </div>
+
+                <!-- Cost Tab -->
+                <div id="cost" class="tab-content">
+                    <h2 style="margin-bottom: 1.5rem;">Gulfstream G550 Cost Analysis</h2>
+                    <p style="color: var(--text-light); margin-bottom: 2rem;">Based on 450 annual owner-operated hours and $4.25 per gallon fuel cost</p>
+
+                    <div class="cost-section">
+                        <div class="cost-table">
+                            <h3>Total Annual Cost Summary</h3>
+                            <div class="cost-row">
+                                <span class="cost-label">Annual Variable Cost</span>
+                                <span class="cost-value">$1,755,000</span>
+                            </div>
+                            <div class="cost-row">
+                                <span class="cost-label">Annual Fixed Cost</span>
+                                <span class="cost-value">$785,000</span>
+                            </div>
+                            <div class="cost-row total">
+                                <span class="cost-label">Total Annual Budget</span>
+                                <span class="cost-value">$2,540,000</span>
+                            </div>
+                            <div class="cost-row">
+                                <span class="cost-label">Cost Per Hour</span>
+                                <span class="cost-value">$5,644</span>
+                            </div>
+                        </div>
+
+                        <div class="cost-table">
+                            <h3>Hourly Variable Cost</h3>
+                            <div class="cost-row">
+                                <span class="cost-label">Fuel (358 gal/hr @ $4.25/gal)</span>
+                                <span class="cost-value">$1,522</span>
+                            </div>
+                            <div class="cost-row">
+                                <span class="cost-label">Airframe Maintenance</span>
+                                <span class="cost-value">$695</span>
+                            </div>
+                            <div class="cost-row">
+                                <span class="cost-label">Engine/APU Maintenance</span>
+                                <span class="cost-value">$1,425</span>
+                            </div>
+                            <div class="cost-row">
+                                <span class="cost-label">Crew/Catering/Misc</span>
+                                <span class="cost-value">$258</span>
+                            </div>
+                            <div class="cost-row total">
+                                <span class="cost-label">Total Hourly Variable</span>
+                                <span class="cost-value">$3,900</span>
+                            </div>
+                        </div>
+
+                        <div class="cost-table">
+                            <h3>Annual Fixed Cost</h3>
+                            <div class="cost-row">
+                                <span class="cost-label">Crew Salary & Benefits</span>
+                                <span class="cost-value">$425,000</span>
+                            </div>
+                            <div class="cost-row">
+                                <span class="cost-label">Crew Training</span>
+                                <span class="cost-value">$75,000</span>
+                            </div>
+                            <div class="cost-row">
+                                <span class="cost-label">Hangar</span>
+                                <span class="cost-value">$150,000</span>
+                            </div>
+                            <div class="cost-row">
+                                <span class="cost-label">Insurance</span>
+                                <span class="cost-value">$95,000</span>
+                            </div>
+                            <div class="cost-row">
+                                <span class="cost-label">Miscellaneous Fixed</span>
+                                <span class="cost-value">$40,000</span>
+                            </div>
+                            <div class="cost-row total">
+                                <span class="cost-label">Total Annual Fixed</span>
+                                <span class="cost-value">$785,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Tab -->
+                <div id="performance" class="tab-content">
+                    <h2 style="margin-bottom: 1.5rem;">Gulfstream G550 Performance</h2>
+                    
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>Speed Performance</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Maximum Speed</span>
+                                <span class="info-item-value">516 KTS / 594 MPH (Mach 0.885)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Normal Cruise Speed</span>
+                                <span class="info-item-value">488 KTS / 561 MPH (Mach 0.80)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Long-Range Cruise</span>
+                                <span class="info-item-value">459 KTS / 528 MPH (Mach 0.75)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Range Capabilities</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Maximum Range</span>
+                                <span class="info-item-value">6,750 NM / 7,767 SM</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Ferry Range</span>
+                                <span class="info-item-value">6,776 NM / 7,798 SM</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Service Ceiling</span>
+                                <span class="info-item-value">51,000 ft (15,545 m)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Takeoff & Landing</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Balanced Field Length</span>
+                                <span class="info-item-value">5,910 ft (1,801 m)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Landing Distance</span>
+                                <span class="info-item-value">2,770 ft (844 m)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Rate of Climb</span>
+                                <span class="info-item-value">4,000 ft/min</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Weight Specifications</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Max Takeoff Weight</span>
+                                <span class="info-item-value">91,000 lbs (41,277 kg)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Max Landing Weight</span>
+                                <span class="info-item-value">75,300 lbs (34,155 kg)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Basic Operating Weight</span>
+                                <span class="info-item-value">48,200 lbs (21,863 kg)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Fuel Consumption</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Fuel Usage Per Hour</span>
+                                <span class="info-item-value">358 US gal (1,355 L)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Total Fuel Capacity</span>
+                                <span class="info-item-value">6,035 US gal (22,850 L)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Fuel Weight</span>
+                                <span class="info-item-value">41,300 lbs (18,733 kg)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Dimensions</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Length</span>
+                                <span class="info-item-value">96 ft 5 in (29.39 m)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Wingspan</span>
+                                <span class="info-item-value">93 ft 6 in (28.50 m)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Height</span>
+                                <span class="info-item-value">25 ft 10 in (7.87 m)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-section" style="margin-top: 3rem;">
+                        <h2>Range vs Payload Chart</h2>
+                        <div class="chart-container">
+                            <canvas id="rangeChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interior Tab -->
+                <div id="interior" class="tab-content">
+                    <h2 style="margin-bottom: 1.5rem;">Gulfstream G550 Interior</h2>
+                    
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>Seating Configuration</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Maximum Passengers</span>
+                                <span class="info-item-value">18</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Typical Configuration</span>
+                                <span class="info-item-value">13-16 passengers</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Minimum Crew</span>
+                                <span class="info-item-value">2 pilots</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Flight Attendants</span>
+                                <span class="info-item-value">1-2 (optional)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Cabin Dimensions</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Cabin Volume</span>
+                                <span class="info-item-value">1,923 cu ft (54.5 m³)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Cabin Height</span>
+                                <span class="info-item-value">6 ft 2 in (1.88 m)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Cabin Width</span>
+                                <span class="info-item-value">7 ft 4 in (2.24 m)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Cabin Length</span>
+                                <span class="info-item-value">43 ft 11 in (13.4 m)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Baggage & Storage</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Total Baggage Capacity</span>
+                                <span class="info-item-value">226 cu ft (6.4 m³)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Internal Baggage</span>
+                                <span class="info-item-value">196 cu ft (5.5 m³)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">External Baggage</span>
+                                <span class="info-item-value">30 cu ft (0.85 m³)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Cabin Features</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Cabin Altitude @ FL510</span>
+                                <span class="info-item-value">6,000 ft</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Cabin Pressure</span>
+                                <span class="info-item-value">11.5 psi</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Cabin Windows</span>
+                                <span class="info-item-value">14 large windows</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Noise Level</span>
+                                <span class="info-item-value">50 dB (cruise)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Interior Highlights</h3>
+                        <ul style="line-height: 2; color: var(--text-dark);">
+                            <li>Four distinct living areas with customizable layouts</li>
+                            <li>Full galley with modern appliances</li>
+                            <li>Private lavatory with enclosed shower option</li>
+                            <li>PlaneView II avionics-inspired cabin management system</li>
+                            <li>High-speed Ku-band connectivity</li>
+                            <li>100% fresh air circulation every 2 minutes</li>
+                            <li>Ion-purified air with plasma ionization</li>
+                            <li>LED lighting with customizable settings</li>
+                            <li>Berthing options for overnight flights</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Exterior Tab -->
+                <div id="exterior" class="tab-content">
+                    <h2 style="margin-bottom: 1.5rem;">Gulfstream G550 Exterior</h2>
+                    
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>Aircraft Dimensions</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Overall Length</span>
+                                <span class="info-item-value">96 ft 5 in (29.39 m)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Wingspan</span>
+                                <span class="info-item-value">93 ft 6 in (28.50 m)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Height</span>
+                                <span class="info-item-value">25 ft 10 in (7.87 m)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Wing Area</span>
+                                <span class="info-item-value">1,137 sq ft (105.6 m²)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Powerplant</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Engines</span>
+                                <span class="info-item-value">2× Rolls-Royce BR710</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Engine Model</span>
+                                <span class="info-item-value">BR710C4-11</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Thrust Per Engine</span>
+                                <span class="info-item-value">15,385 lbf (68.4 kN)</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Total Thrust</span>
+                                <span class="info-item-value">30,770 lbf (136.8 kN)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Design Features</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Wing Design</span>
+                                <span class="info-item-value">Swept-back supercritical</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Wing Sweep</span>
+                                <span class="info-item-value">25 degrees</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Tail Configuration</span>
+                                <span class="info-item-value">T-tail</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Landing Gear</span>
+                                <span class="info-item-value">Retractable tricycle</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <h3>Materials & Construction</h3>
+                            <div class="info-item">
+                                <span class="info-item-label">Fuselage Construction</span>
+                                <span class="info-item-value">Aluminum alloy</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Wing Construction</span>
+                                <span class="info-item-value">Aluminum with composite elements</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-item-label">Fuel Tanks</span>
+                                <span class="info-item-value">Integral wing tanks</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 8px;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Exterior Features</h3>
+                        <ul style="line-height: 2; color: var(--text-dark);">
+                            <li>Advanced supercritical wing design for optimal efficiency</li>
+                            <li>Winglets for improved aerodynamic performance</li>
+                            <li>Enhanced Vision System (EVS) for low-visibility operations</li>
+                            <li>Head-Up Display (HUD) system</li>
+                            <li>PlaneView II avionics suite</li>
+                            <li>Weather radar with turbulence detection</li>
+                            <li>TCAS II traffic alert and collision avoidance</li>
+                            <li>Dual GPS navigation systems</li>
+                            <li>Satellite communications equipment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Aircraft Specifications Database. All rights reserved.</p>
+            <p>Data compiled from official manufacturer specifications and aviation databases.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/charts.js"></script>
+    <script>
+        // Tab switching function
+        function openTab(evt, tabName) {
+            // Hide all tab contents
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+            
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            // Show current tab and add active class to button
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Range vs Payload Chart
+        const rangeCtx = document.getElementById('rangeChart').getContext('2d');
+        new Chart(rangeCtx, {
+            type: 'line',
+            data: {
+                labels: ['0', '1,000', '2,000', '3,000', '4,000', '5,000'],
+                datasets: [{
+                    label: 'Range (nautical miles)',
+                    data: [6750, 6500, 6200, 5800, 5200, 4500],
+                    borderColor: 'rgb(0, 102, 204)',
+                    backgroundColor: 'rgba(0, 102, 204, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    title: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Payload (lbs)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Range (nautical miles)'
+                        },
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
