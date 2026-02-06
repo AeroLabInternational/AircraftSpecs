@@ -57,6 +57,7 @@ const japaneseTranslations = {
     // Footer
     '© 2026 Aircraft Specifications Database. All rights reserved.': '© 2026 航空機仕様データベース. 全著作権所有.',
     'Data compiled from official manufacturer specifications and aviation databases.': '公式メーカー仕様および航空データベースからコンパイルされたデータ。',
+    'Images are AI-generated representative renderings and may not depict an actual aircraft configuration.': '画像はAI生成による参考イメージであり、実際の航空機構成を表していない場合があります。',
     
     // Search
     'No aircraft found': '航空機が見つかりません',

@@ -337,15 +337,17 @@
                     <!-- Runway Length Section -->
                     <div style="margin-top: 3rem;">
                         <h2 style="margin-bottom: 2rem;">Runway Length Requirements</h2>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
-                            <div style="text-align: center;">
-                                <img src="../images/Aerolab/AircraftRunway.jpg" alt="Aircraft Runway" style="width: 90%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-                            </div>
-                            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">Runway Distance Requirements</h3>
-                                <div style="position: relative; height: 350px;">
-                                    <canvas id="runwayChart"></canvas>
-                                </div>
+                        
+                        <!-- Runway Image -->
+                        <div style="text-align: center; margin-bottom: 2rem;">
+                            <img src="../images/Aerolab/AircraftRunway.jpg" alt="Aircraft Runway" style="width: 100%; max-width: 900px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                        </div>
+                        
+                        <!-- Runway Chart -->
+                        <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 1200px; margin: 0 auto;">
+                            <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-color);">Runway Distance Requirements</h3>
+                            <div style="position: relative; height: 400px; width: 100%;">
+                                <canvas id="runwayChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -528,6 +530,7 @@
         <div class="container">
             <p>&copy; 2026 Aircraft Specifications Database. All rights reserved.</p>
             <p>Data compiled from official manufacturer specifications and aviation databases.</p>
+            <p>Images are AI-generated representative renderings and may not depict an actual aircraft configuration.</p>
         </div>
     </footer>
 
@@ -556,9 +559,20 @@
             
             // Fix map display when switching to performance tab
             if (tabName === 'performance' && typeof rangeMap !== 'undefined' && rangeMap) {
+                // Multiple invalidateSize calls with increasing delays to ensure proper rendering
                 setTimeout(function() {
-                    rangeMap.invalidateSize();
+                    if (rangeMap) {
+                        rangeMap.invalidateSize();
+                        // Re-fit bounds to circles to ensure proper zoom
+                        if (ferryCircle) {
+                            rangeMap.fitBounds(ferryCircle.getBounds(), { padding: [50, 50] });
+                        }
+                    }
                 }, 100);
+                
+                setTimeout(function() {
+                    if (rangeMap) rangeMap.invalidateSize();
+                }, 300);
             }
         }
 

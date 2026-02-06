@@ -176,6 +176,13 @@ function initRangeMap(defaultLat, defaultLng, ferryRangeNM, passengerRangeNM, ai
             rangeMap.remove();
         }
 
+        // Check if the map container exists
+        const mapContainer = document.getElementById('rangeMap');
+        if (!mapContainer) {
+            console.error('rangeMap container not found');
+            return;
+        }
+
         // Create map centered on selected airport
         rangeMap = L.map('rangeMap', {
             center: [lat, lng],
@@ -193,8 +200,8 @@ function initRangeMap(defaultLat, defaultLng, ferryRangeNM, passengerRangeNM, ai
         }).addTo(rangeMap);
 
         // Add marker for departure airport
-        L.marker([lat, lng]).addTo(rangeMap)
-            .bindPopup('<b>Departure Airport</b>')
+        const marker = L.marker([lat, lng]).addTo(rangeMap);
+        marker.bindPopup('<b>Departure Airport</b><br>Tokyo Haneda (HND)')
             .openPopup();
 
         // Convert nautical miles to meters (1 NM = 1852 meters)
@@ -224,14 +231,24 @@ function initRangeMap(defaultLat, defaultLng, ferryRangeNM, passengerRangeNM, ai
         // Fit map to show both circles
         rangeMap.fitBounds(ferryCircle.getBounds(), { padding: [50, 50] });
         
-        // Force map to invalidate size after a short delay
+        // Force map to invalidate size with multiple attempts to ensure proper rendering
         setTimeout(function() {
-            rangeMap.invalidateSize();
+            if (rangeMap) rangeMap.invalidateSize();
         }, 100);
+        
+        setTimeout(function() {
+            if (rangeMap) rangeMap.invalidateSize();
+        }, 300);
+        
+        setTimeout(function() {
+            if (rangeMap) rangeMap.invalidateSize();
+        }, 500);
     }
 
-    // Initialize map with default location
-    initializeMap(defaultLat, defaultLng);
+    // Wait a bit before initializing to ensure the DOM is ready
+    setTimeout(function() {
+        initializeMap(defaultLat, defaultLng);
+    }, 250);
 
     // Return the initializeMap function so it can be called from the search
     return initializeMap;
@@ -240,7 +257,10 @@ function initRangeMap(defaultLat, defaultLng, ferryRangeNM, passengerRangeNM, ai
 // Runway Length Horizontal Bar Chart
 function initRunwayChart(balancedField, part91, part135, landing) {
     const runwayCtx = document.getElementById('runwayChart');
-    if (!runwayCtx) return;
+    if (!runwayCtx) {
+        console.error('runwayChart canvas not found');
+        return;
+    }
 
     // Convert feet to meters
     const balancedFieldM = Math.round(balancedField * 0.3048);
@@ -253,7 +273,7 @@ function initRunwayChart(balancedField, part91, part135, landing) {
         data: {
             labels: ['Balanced Field Length', 'Part 91 Takeoff', 'Part 135 Takeoff', 'Landing Distance'],
             datasets: [{
-                label: 'Distance (meters)',
+                label: 'Distance',
                 data: [balancedFieldM, part91M, part135M, landingM],
                 backgroundColor: [
                     'rgba(0, 51, 153, 0.8)',
@@ -267,36 +287,52 @@ function initRunwayChart(balancedField, part91, part135, landing) {
                     'rgba(54, 162, 235, 1)',
                     'rgba(102, 178, 255, 1)'
                 ],
-                borderWidth: 2
+                borderWidth: 2,
+                barPercentage: 0.8,
+                categoryPercentage: 0.9
             }]
         },
         options: {
-            indexAxis: 'y',
+            indexAxis: 'y', // This makes the bars horizontal
             responsive: true,
             maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    right: 20
+                }
+            },
+            interaction: {
+                mode: 'index',
+                intersect: false
+            },
             plugins: {
                 legend: {
                     display: false
                 },
                 tooltip: {
                     enabled: true,
+                    mode: 'index',
                     backgroundColor: 'rgba(0, 0, 0, 0.9)',
                     padding: 15,
+                    cornerRadius: 6,
                     titleFont: {
+                        family: 'Inter',
                         size: 14,
                         weight: 'bold'
                     },
                     bodyFont: {
+                        family: 'Inter',
                         size: 13
                     },
+                    displayColors: false,
                     callbacks: {
-                        title: function() {
-                            return '';
+                        title: function(context) {
+                            return context[0].label;
                         },
                         label: function(context) {
                             const meters = context.parsed.x || 0;
                             const feet = Math.round(meters / 0.3048);
-                            return context.label + ': ' + meters.toLocaleString() + ' m (' + feet.toLocaleString() + ' ft)';
+                            return meters.toLocaleString() + ' m (' + feet.toLocaleString() + ' ft)';
                         }
                     }
                 }
@@ -304,31 +340,45 @@ function initRunwayChart(balancedField, part91, part135, landing) {
             scales: {
                 x: {
                     beginAtZero: true,
+                    position: 'bottom',
                     title: {
                         display: true,
                         text: 'Distance (meters)',
                         font: {
-                            size: 12,
+                            family: 'Inter',
+                            size: 13,
                             weight: 'bold'
-                        }
+                        },
+                        padding: { top: 10 }
                     },
                     ticks: {
                         callback: function(value) {
                             return value.toLocaleString();
-                        }
+                        },
+                        font: {
+                            family: 'Inter',
+                            size: 11
+                        },
+                        maxRotation: 0,
+                        minRotation: 0
                     },
                     grid: {
-                        color: 'rgba(0, 0, 0, 0.1)'
+                        color: 'rgba(0, 0, 0, 0.08)',
+                        drawBorder: true
                     }
                 },
                 y: {
+                    position: 'left',
                     grid: {
-                        display: false
+                        display: false,
+                        drawBorder: true
                     },
                     ticks: {
                         font: {
-                            size: 11
-                        }
+                            family: 'Inter',
+                            size: 12
+                        },
+                        padding: 10
                     }
                 }
             }
@@ -365,21 +415,40 @@ function initCostCharts(variableCosts, fixedCosts) {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                interaction: {
+                    mode: 'nearest',
+                    intersect: true
+                },
                 plugins: {
                     legend: {
-                        display: false
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: 'Inter',
+                                size: 12
+                            },
+                            padding: 10,
+                            boxWidth: 15
+                        }
                     },
                     tooltip: {
                         enabled: true,
+                        mode: 'nearest',
                         backgroundColor: 'rgba(0, 0, 0, 0.9)',
                         padding: 15,
+                        cornerRadius: 6,
                         titleFont: {
+                            family: 'Inter',
                             size: 14,
                             weight: 'bold'
                         },
                         bodyFont: {
+                            family: 'Inter',
                             size: 13
                         },
+                        bodySpacing: 8,
+                        displayColors: true,
                         callbacks: {
                             label: function(context) {
                                 const label = context.label || '';
@@ -424,21 +493,40 @@ function initCostCharts(variableCosts, fixedCosts) {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                interaction: {
+                    mode: 'nearest',
+                    intersect: true
+                },
                 plugins: {
                     legend: {
-                        display: false
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: 'Inter',
+                                size: 12
+                            },
+                            padding: 10,
+                            boxWidth: 15
+                        }
                     },
                     tooltip: {
                         enabled: true,
+                        mode: 'nearest',
                         backgroundColor: 'rgba(0, 0, 0, 0.9)',
                         padding: 15,
+                        cornerRadius: 6,
                         titleFont: {
+                            family: 'Inter',
                             size: 14,
                             weight: 'bold'
                         },
                         bodyFont: {
+                            family: 'Inter',
                             size: 13
                         },
+                        bodySpacing: 8,
+                        displayColors: true,
                         callbacks: {
                             label: function(context) {
                                 const label = context.label || '';
